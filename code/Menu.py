@@ -2,7 +2,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, C_WHITE
+from code.Const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, C_WHITE, COLOR_YELLOW
 
 
 class Menu:
@@ -13,18 +13,24 @@ class Menu:
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
+
+        menu_option = 0
+
         pygame.mixer_music.load('./asset/Menu.mp3')  # só carrega o som
         pygame.mixer_music.play(-1)  # Toca o som carregado no load, e parametro -1 para tocar indefindamente
 
         while True:  # loop infinto fazendo o desenho da imagem e checagem, do evento para quando usuário clica e fechar
             # DRAW IMAGES
             self.window.blit(source=self.surf, dest=self.rect)  # criando o retangulo onde ficará a imagem
-            self.menu_text(50, "Mountain", C_WHITE,
+            self.menu_text(50, "Mountain", COLOR_ORANGE,
                            ((WIN_WIDTH / 2), 70))  # escrevendo o texto sobre a imagem do retangulo criada acima
-            self.menu_text(50, "Shooter", C_WHITE, ((WIN_WIDTH / 2), 120))
+            self.menu_text(50, "Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 120))
 
             for i in range(len(MENU_OPTION)):
-                self.menu_text(20, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+                if i == menu_option:
+                    self.menu_text(20, MENU_OPTION[i], COLOR_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
+                else:
+                    self.menu_text(20, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
 
             pygame.display.flip()
 
