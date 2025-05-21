@@ -19,9 +19,9 @@ class Menu:
         while True:  # loop infinto fazendo o desenho da imagem e checagem, do evento para quando usuário clica e fechar
             # DRAW IMAGES
             self.window.blit(source=self.surf, dest=self.rect)  # criando o retangulo onde ficará a imagem
-            self.menu_text(50, "Mountain", COLOR_ORANGE,
+            self.menu_text(50, "Mountain", C_WHITE,
                            ((WIN_WIDTH / 2), 70))  # escrevendo o texto sobre a imagem do retangulo criada acima
-            self.menu_text(50, "Shooter", (255, 128, 0), ((WIN_WIDTH / 2), 120))
+            self.menu_text(50, "Shooter", C_WHITE, ((WIN_WIDTH / 2), 120))
 
             for i in range(len(MENU_OPTION)):
                 self.menu_text(20, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
