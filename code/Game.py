@@ -17,7 +17,7 @@ class Game:
             menu_return = menu.run() # recebe o return lá do menu e coloca na variável menu_return. A partir desse returno do Menu, podemos inciar alguma ação
 
             if menu_return in [MENU_OPTION[0], MENU_OPTION[1], MENU_OPTION[2]]: # aqui vamos iniciar a acção de entrar no lvel
-                level = Level(self.window, 'Level 1', menu_return) # inicializa o objeto//construtor da classe level
+                level = Level(self.window, 'Level1', menu_return) # inicializa o objeto//construtor da classe level
                                         #passando a janela como parâmetro (self.window)
                                         #um nome 'level1' e também uma possibilidade de opções de jogo menu_return
                 level_return = level.run() #para iniciar a execução da level

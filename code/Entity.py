@@ -10,7 +10,7 @@ class Entity(ABC): #ABC para indicar que é uma classe ABSTRATA, que irá gerar 
         self.name = name
 
         #msm procedimento para carregar as imagens:
-        self.surf = pygame.image.load('./asset/' + name + '.png')
+        self.surf = pygame.image.load('./asset/' + name + '.png').convert_alpha() #convert_alpha faz um tratamento das transparências das imagens .png
         self.rect = self.surf.get_rect(left=position[0], top=position[1])
         self.speed = 0
 
