@@ -1,3 +1,4 @@
+import random
 import sys
 
 import pygame
@@ -5,7 +6,7 @@ from pygame import SurfaceType, Surface, Rect
 #from pygame.examples.go_over_there import clock
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT
+from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
@@ -16,9 +17,18 @@ class Level:
         self.window = window
         self.name = name
         self.game_mode = game_mode # game_mode irá receber o return do menu_option
+        self.timeout = 20000  # 20 seg
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
+        self.entity_list.append(EntityFactory.get_entity('Player1')) #adicionando o Player1
         self.timeout = 20000 # 20 seg
+        if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
+            self.entity_list.append(EntityFactory.get_entity('Player2'))  # adicionando o Player2
+        # utilizando o conceito de "eventos", vamos instanciar os inimigos a cada xis tempo:
+        pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME) # evento a cada 2 seg para gerar o inimigo através de um if no level.py no run
+
+
+
 
     def run(self):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3') #incluida musica no lvl1 (importada)
@@ -33,6 +43,10 @@ class Level:
                 if event.type == pygame.QUIT:# para poder fechar a janela qndo no lvl 1
                     pygame.quit()
                     sys.exit() # = o quit
+                if event.type == EVENT_ENEMY:
+                    choice = random.choice(('Enemy1', 'Enemy2'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
+
 
             #Incluindo textos de level referentes ao método level_text criado mais abaixo
             #aqui teremos os textos que aparecem na tela do level1 que será no canto superior esquerdo Timeout
