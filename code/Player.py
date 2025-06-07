@@ -1,12 +1,15 @@
 import pygame.key
 
 from code.Const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH, PLAYER_KEY_UP, PLAYER_KEY_DOWN, PLAYER_KEY_LEFT, \
-    PLAYER_KEY_RIGHT
+    PLAYER_KEY_RIGHT, PLAYER_KEY_SHOOT, ENTITY_SHOT_DELAY
 from code.Entity import Entity
+from code.PlayerShot import PlayerShot
+
 
 class Player(Entity):
     def __init__(self, name: str, position: tuple): #player terá um nome (name) que será str e uma position que é uma tupla
         super().__init__(name, position) # isso (name e position) herda da super classe
+        self.shot_delay = ENTITY_SHOT_DELAY[self.name]
 
     def move(self, ):
         pressed_key = pygame.key.get_pressed() # get_pressed é para enquanto a tecla estiver pressionada fazer algo
@@ -21,3 +24,12 @@ class Player(Entity):
         if pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH: #se a tecla pressionada for seta para cima (K_UP)
             self.rect.centerx += ENTITY_SPEED[self.name]
         pass
+
+    def shoot(self): #metodo para player atirar
+        self.shot_delay -= 1
+        if self.shot_delay == 0:
+            self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+            pressed_key = pygame.key.get_pressed()
+            if pressed_key[PLAYER_KEY_SHOOT[self.name]]:
+                return PlayerShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery)) #instanciando o tiro dentro do player
+
