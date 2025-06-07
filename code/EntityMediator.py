@@ -5,7 +5,9 @@ from code.Entity import Entity
 class EntityMediator:
 
     @staticmethod
-    def __verify_collision_window(ent: Entity): #funçao para verif se atingiu o limite da tela., __ indica que é um método privado que só funciona dentro dessa clasese
+    def __verify_collision_window(ent: Entity): #funçao para verif se atingiu o limite da tela., __ indica que é um
+                                                # metodo
+                                                # privado que só funciona dentro dessa classe
         if isinstance(ent, Enemy):
             if ent.rect.right <  0: #entitade passar da tela
                 ent.health = 0
