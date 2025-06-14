@@ -21,9 +21,16 @@ class EntityFactory:   #para ser invocada no level.py e então
             case 'Level1Bg': #se o nome da entidade  que vier for Level1Bg
                 list_bg = [] #pega todos os background e carrega todos dentro de 1 lista vazia
                             # e faz um loop juntando todos os Bgs dentro da lista que estava vazia
-                for i in range(7):
+                for i in range(7): #level1bg image numbers
                     list_bg.append(Background(f'Level1Bg{i}', position))
                     list_bg.append(Background(f'Level1Bg{i}', (WIN_WIDTH,0)))
+                return list_bg
+            case 'Level2Bg': #se o nome da entidade  que vier for Level1Bg
+                list_bg = [] #pega todos os background e carrega todos dentro de 1 lista vazia
+                            # e faz um loop juntando todos os Bgs dentro da lista que estava vazia
+                for i in range(5):#level2bg image numbers
+                    list_bg.append(Background(f'Level2Bg{i}', position))
+                    list_bg.append(Background(f'Level2Bg{i}', (WIN_WIDTH,0)))
                 return list_bg
             case 'Player1':
                 return Player('Player1',(10, WIN_HEIGHT / 2 - 30))
