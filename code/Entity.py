@@ -22,5 +22,5 @@ class Entity(ABC): #ABC para indicar que é uma classe ABSTRATA, que irá gerar 
 
     @abstractmethod #decorator @ para indicar ao pythpn que o
                     #somente pelos seus filhos e não pela class Entry abstrata
-    def move(self, ):
+    def move(self):
         pass

@@ -11,7 +11,7 @@ class Player(Entity):
         super().__init__(name, position) # isso (name e position) herda da super classe
         self.shot_delay = ENTITY_SHOT_DELAY[self.name]
 
-    def move(self, ):
+    def move(self):
         pressed_key = pygame.key.get_pressed() # get_pressed é para enquanto a tecla estiver pressionada fazer algo
         if pressed_key[PLAYER_KEY_UP[self.name]] and self.rect.top > 0: #se a tecla pressionada for seta para cima (K_UP)
             self.rect.centery -= ENTITY_SPEED[self.name] #então o objeto do player (self) se movimenta. O objeto se movimento
@@ -32,4 +32,7 @@ class Player(Entity):
             pressed_key = pygame.key.get_pressed()
             if pressed_key[PLAYER_KEY_SHOOT[self.name]]:
                 return PlayerShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery)) #instanciando o tiro dentro do player
-
+            else:
+                return None
+        else:
+            return None

@@ -56,7 +56,6 @@ ENTITY_HEALTH = {
     'Enemy1Shot': 1,
     'Enemy2': 60,
     'Enemy2Shot': 1,
-
 }
 
 ENTITY_DAMAGE = {
